@@ -316,9 +316,9 @@
   integrity sha512-B/XlCaFIP8LOwzo+bz5uFzATYokcwCKQcghqnlfwSmM5eX/qTkvDBnDPs+gXtX/RyjxJ4DRikECcPJbyALA8FA==
 
 "@ciganov/contracts@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@ciganov/contracts/-/contracts-1.1.2.tgz#6cf75eda1682d0e3df639f4bb7cda0b2de2b5f2e"
-  integrity sha512-VMplo5agcy337RXRJ2g1HExIY3DXpdLTUCoCFzbcmiYDioADvpnJOc7zvnSP0IBiXbZg3AyCEFIax7it8+Kcfw==
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@ciganov/contracts/-/contracts-1.1.6.tgz#81f7c62be459a14c03555a81f2498a4abb66e49d"
+  integrity sha512-Scf6gHutqWgx3/9m3XEgPBKCrynmPnmtt9YLxaPCV23p234Gp5DUom9/cFuVTxm6X4/u0HBQIe7/IVRVYr8W6w==
   dependencies:
     "@nestjs/microservices" "^11.1.11"
     cpy-cli "^7.0.0"
@@ -326,9 +326,9 @@
     ts-proto "^2.10.1"
 
 "@ciganov/core@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@ciganov/core/-/core-1.0.0.tgz#1ea5b9457a91db29439206a5862237aed5e996ac"
-  integrity sha512-wBmIKikERFuIpyzC8Aj2dE5EvNf6isBINCuS5WwooxxtUHXDhf3HQdGtp9FtSoXYQfXmqD2+sfMzJA5jXLI7YA==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@ciganov/core/-/core-1.0.1.tgz#29790f31fa25a843abf698447a1123bb671ecbaa"
+  integrity sha512-MyQfau90UbsQkrGmKXrtIIuyr2LH0dwld1qMTT/cO712yr03sKvc8ZbK1zWASLhYct38lRRADMWfEAEectVrbg==
   dependencies:
     "@nestjs/config" "^4.0.4"
     "@trivago/prettier-plugin-sort-imports" "^6.0.2"
@@ -988,15 +988,7 @@
   resolved "https://registry.yarnpkg.com/@nestjs/mapped-types/-/mapped-types-2.1.1.tgz#9530ac3250ab433ba6ef831e9dd5d483f5fc8144"
   integrity sha512-SCCoMEJ6jdeI5h/N+KCVF1+pmg/hmEkNA5nHTS8Gvww7T/LCl4o1gFLinw2iQ60w7slFkszHcGLKGdazVI4F8A==
 
-"@nestjs/microservices@^11.1.11":
-  version "11.1.20"
-  resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-11.1.20.tgz#f8a78d7efdf7115c24d142df92e810ff7310304e"
-  integrity sha512-BQxa+sTT8Vpqdv4Ieaz4RjbiCpTtt8o3DWSkr5wiMX7V6BpXQOyFXhWDYVD707D+cBsdZEXsaFw9iav7BOy0mw==
-  dependencies:
-    iterare "1.2.1"
-    tslib "2.8.1"
-
-"@nestjs/microservices@^11.1.21":
+"@nestjs/microservices@^11.1.11", "@nestjs/microservices@^11.1.21":
   version "11.1.21"
   resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-11.1.21.tgz#089a963da9fe9f13d9ee4b0fe3bb198d06181b3c"
   integrity sha512-NRDK/lCSD5ul53NE5YHuXKygI7P73OLSR5gljFBrUfLip37L/+s96MqUBHCxWt2YCd0GhPJfqO9zttJBxpX5sA==
@@ -4987,9 +4979,9 @@ leven@^3.1.0:
   integrity sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==
 
 libphonenumber-js@^1.11.1:
-  version "1.13.1"
-  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.13.1.tgz#607baae726e1ab5c6df1425bb886601cef44f500"
-  integrity sha512-GEw0GLL7YUUA6nv21IsCvVjtI5Ejn84sjbdfQ9KxdbqEVOk1PZh7xejn01EEiniKw+dBeCfim+8MGeuvVuE2BA==
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.13.2.tgz#526b275182b77ebfb786869650430c82f9176286"
+  integrity sha512-S3kmBrptp3yRTm83NUcHy9g1vbwiWMzI8WvY22+koBJ6zkRteLnedBL2VX0MIAGwx2yiyxX4J85pceZyQ6ffgg==
 
 lines-and-columns@^1.1.6:
   version "1.2.4"
