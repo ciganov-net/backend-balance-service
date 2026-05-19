@@ -1,0 +1,51 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "./generated"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Wallet {
+  id String @id @default(nanoid())
+
+  mainBalance   Decimal @default(0) @map("main_balance") @db.Decimal(12, 2)
+  bonusBalance  Decimal @default(0) @map("bonus_balance") @db.Decimal(12, 2)
+  freezeBalance Decimal @default(0) @map("freeze_balance") @db.Decimal(12, 2)
+
+  transactions Transaction[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("wallets")
+}
+
+model Transaction {
+  id String @id @default(nanoid())
+
+  type    TransactionType
+  amount  Decimal         @db.Decimal(12, 2)
+  eventId String?         @map("event_id")
+
+  walletId String
+  wallet   Wallet @relation(fields: [walletId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("transactions")
+}
+
+enum TransactionType {
+  DEPOSIT
+  WITHDRAW
+  BET_FREEZE
+  BET_WIN
+  BET_LOSE
+  REFUND
+  BONUS
+
+  @@map("transaction_type")
+}
