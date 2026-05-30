@@ -4,7 +4,9 @@ import { LoggerModule } from 'nestjs-pino'
 
 import { PrismaModule } from '@/infrastructure/prisma/prisma.module'
 import { TransactionsModule } from '@/modules/transactions/transactions.module'
+import { WalletsModule } from '@/modules/wallets/wallets.module'
 import { WalletsService } from '@/modules/wallets/wallets.service'
+import { ObservabilityModule } from '@/observability/observability.module'
 
 @Module({
 	imports: [
@@ -33,7 +35,8 @@ import { WalletsService } from '@/modules/wallets/wallets.service'
 			}
 		}),
 		PrismaModule,
-		WalletsService,
+		ObservabilityModule,
+		WalletsModule,
 		TransactionsModule
 	],
 	controllers: [],

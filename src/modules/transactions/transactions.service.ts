@@ -46,8 +46,8 @@ export class TransactionsService {
 	public async transaction(
 		data: AddTransactionRequest
 	): Promise<AddTransactionResponse> {
-		const { amount, type, eventId, userId, multiplier } = data
-
+		const { amount, type: requestType, eventId, userId, multiplier } = data
+		const type = convertEnum(PrismaTransactionType, requestType)
 		if (amount <= 0)
 			throw new RpcException({
 				code: RpcStatus.CANCELLED,
@@ -55,10 +55,11 @@ export class TransactionsService {
 			})
 		try {
 			return await this.prismaService.$transaction(async tx => {
-				const wallets = await tx.$queryRaw<Wallet[]>`
-          SELECT * FROM "wallets" 
-          WHERE "userId" = ${userId} 
-          FOR UPDATE
+				const wallets = await tx.$queryRaw`
+					SELECT *
+					FROM "wallets"
+					WHERE "id" = ${userId}
+					FOR UPDATE
         `
 				let wallet = wallets[0]
 
@@ -68,12 +69,11 @@ export class TransactionsService {
 						details: 'Wallet not found'
 					})
 
-				let mainBalance = new Decimal(wallet.mainBalance)
-				let freezeBalance = new Decimal(wallet.freezeBalance)
-				let bonusBalance = new Decimal(wallet.bonusBalance)
-
+				let mainBalance = new Decimal(wallet.main_balance)
+				let freezeBalance = new Decimal(wallet.freeze_balance)
+				let bonusBalance = new Decimal(wallet.bonus_balance)
 				switch (type) {
-					case TransactionType.WITHDRAW:
+					case PrismaTransactionType.WITHDRAW:
 						if (mainBalance.lt(amount)) {
 							throw new RpcException({
 								code: RpcStatus.FAILED_PRECONDITION,
@@ -82,10 +82,10 @@ export class TransactionsService {
 						}
 						mainBalance = mainBalance.minus(amount)
 						break
-					case TransactionType.DEPOSIT:
+					case PrismaTransactionType.DEPOSIT:
 						mainBalance = mainBalance.plus(amount)
 						break
-					case TransactionType.BET_FREEZE:
+					case PrismaTransactionType.BET_FREEZE:
 						if (mainBalance.lt(amount)) {
 							throw new RpcException({
 								code: RpcStatus.FAILED_PRECONDITION,
@@ -95,7 +95,7 @@ export class TransactionsService {
 						mainBalance = mainBalance.minus(amount)
 						freezeBalance = freezeBalance.plus(amount)
 						break
-					case TransactionType.BET_WIN:
+					case PrismaTransactionType.BET_WIN:
 						if (freezeBalance.lt(amount)) {
 							throw new RpcException({
 								code: RpcStatus.FAILED_PRECONDITION,
@@ -108,7 +108,7 @@ export class TransactionsService {
 						freezeBalance = freezeBalance.minus(betAmount)
 						mainBalance = mainBalance.plus(totalWin)
 						break
-					case TransactionType.BET_LOSE:
+					case PrismaTransactionType.BET_LOSE:
 						if (freezeBalance.lt(amount)) {
 							throw new RpcException({
 								code: RpcStatus.FAILED_PRECONDITION,
@@ -117,7 +117,7 @@ export class TransactionsService {
 						}
 						freezeBalance = freezeBalance.minus(amount)
 						break
-					case TransactionType.BONUS:
+					case PrismaTransactionType.BONUS:
 						if (bonusBalance.lt(amount)) {
 							throw new RpcException({
 								code: RpcStatus.FAILED_PRECONDITION,
@@ -127,7 +127,7 @@ export class TransactionsService {
 						bonusBalance = bonusBalance.minus(amount)
 						freezeBalance = freezeBalance.plus(amount)
 						break
-					case TransactionType.REFUND:
+					case PrismaTransactionType.REFUND:
 						if (freezeBalance.lt(amount)) {
 							throw new RpcException({
 								code: RpcStatus.FAILED_PRECONDITION,
@@ -156,7 +156,7 @@ export class TransactionsService {
 					data: {
 						wallet: { connect: { id: userId } },
 						amount,
-						type: convertEnum(PrismaTransactionType, type),
+						type,
 						eventId
 					}
 				})

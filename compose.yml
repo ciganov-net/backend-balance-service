@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  balance-service:
+    container_name: balance-service
+    image: ciganov-net/balance-service:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env.production.local
+    expose:
+      - '9104'
+    volumes:
+      - ../logs/balance:/var/log/services/balance
+    networks:
+      - ciganov-net
+
+networks:
+  ciganov-net:
+    external: true
