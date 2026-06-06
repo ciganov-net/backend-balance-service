@@ -1,4 +1,6 @@
 import type {
+	CreateWalletRequest,
+	CreateWalletResponse,
 	GetBalanceRequest,
 	GetBalanceResponse
 } from '@ciganov/contracts/dist/gen/balance'
@@ -16,5 +18,12 @@ export class WalletsController {
 		data: GetBalanceRequest
 	): Promise<GetBalanceResponse> {
 		return await this.walletsService.getWalletByUserId(data)
+	}
+
+	@GrpcMethod('BalanceService', 'CreateWallet')
+	public async createWallet(
+		data: CreateWalletRequest
+	): Promise<CreateWalletResponse> {
+		return await this.walletsService.createWallet(data)
 	}
 }

@@ -316,9 +316,9 @@
   integrity sha512-B/XlCaFIP8LOwzo+bz5uFzATYokcwCKQcghqnlfwSmM5eX/qTkvDBnDPs+gXtX/RyjxJ4DRikECcPJbyALA8FA==
 
 "@ciganov/contracts@^1.1.2":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@ciganov/contracts/-/contracts-1.1.6.tgz#81f7c62be459a14c03555a81f2498a4abb66e49d"
-  integrity sha512-Scf6gHutqWgx3/9m3XEgPBKCrynmPnmtt9YLxaPCV23p234Gp5DUom9/cFuVTxm6X4/u0HBQIe7/IVRVYr8W6w==
+  version "1.1.19"
+  resolved "https://registry.yarnpkg.com/@ciganov/contracts/-/contracts-1.1.19.tgz#e0cfe6df2500bf7f6e02d3339d5e36d54d6ab009"
+  integrity sha512-T/jWnb9DPi7qXEguH1WkpAluU6z3i8u8S2g9vqnnA+smrGuGhZXJCh0iQtvEYR9ZuKQu3wKBxSnU3KkHbP44lQ==
   dependencies:
     "@nestjs/microservices" "^11.1.11"
     cpy-cli "^7.0.0"
@@ -988,7 +988,15 @@
   resolved "https://registry.yarnpkg.com/@nestjs/mapped-types/-/mapped-types-2.1.1.tgz#9530ac3250ab433ba6ef831e9dd5d483f5fc8144"
   integrity sha512-SCCoMEJ6jdeI5h/N+KCVF1+pmg/hmEkNA5nHTS8Gvww7T/LCl4o1gFLinw2iQ60w7slFkszHcGLKGdazVI4F8A==
 
-"@nestjs/microservices@^11.1.11", "@nestjs/microservices@^11.1.21":
+"@nestjs/microservices@^11.1.11":
+  version "11.1.24"
+  resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-11.1.24.tgz#8ae7bf8b4bec2ef377a2c8dc6eba3e33ad5f163e"
+  integrity sha512-ALu/7qk3obFlw7KVSPRz+BjuyWPLmv9isknhLG8UYXkjx3aPhJGp52i3qiTqucM1jKtoBgPa3+SK4e9fVvglGA==
+  dependencies:
+    iterare "1.2.1"
+    tslib "2.8.1"
+
+"@nestjs/microservices@^11.1.21":
   version "11.1.21"
   resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-11.1.21.tgz#089a963da9fe9f13d9ee4b0fe3bb198d06181b3c"
   integrity sha512-NRDK/lCSD5ul53NE5YHuXKygI7P73OLSR5gljFBrUfLip37L/+s96MqUBHCxWt2YCd0GhPJfqO9zttJBxpX5sA==

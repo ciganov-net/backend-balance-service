@@ -1,4 +1,6 @@
 import {
+	CreateWalletRequest,
+	CreateWalletResponse,
 	GetBalanceRequest,
 	GetBalanceResponse
 } from '@ciganov/contracts/dist/gen/balance'
@@ -22,6 +24,16 @@ export class WalletsService {
 				freezeBalance: response.freezeBalance.toNumber(),
 				mainBalance: response.mainBalance.toNumber()
 			}
+		}
+	}
+
+	public async createWallet(
+		data: CreateWalletRequest
+	): Promise<CreateWalletResponse> {
+		const { userId } = data
+		await this.repo.create({ id: userId })
+		return {
+			ok: true
 		}
 	}
 }

@@ -16,7 +16,8 @@ export const TransactionType = {
   BET_WIN: 'BET_WIN',
   BET_LOSE: 'BET_LOSE',
   REFUND: 'REFUND',
-  BONUS: 'BONUS'
+  BET_BONUS: 'BET_BONUS',
+  ADD_BONUS: 'ADD_BONUS'
 } as const
 
 export type TransactionType = (typeof TransactionType)[keyof typeof TransactionType]

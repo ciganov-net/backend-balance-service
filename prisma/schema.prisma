@@ -45,7 +45,8 @@ enum TransactionType {
   BET_WIN
   BET_LOSE
   REFUND
-  BONUS
+  BET_BONUS
+  ADD_BONUS
 
   @@map("transaction_type")
 }

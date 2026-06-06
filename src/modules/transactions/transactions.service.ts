@@ -13,12 +13,18 @@ import {
 	TransactionType as PrismaTransactionType,
 	Wallet
 } from '@prisma/generated/client'
+import { PinoLogger } from 'nestjs-pino'
 
 import { PrismaService } from '@/infrastructure/prisma/prisma.service'
 
 @Injectable()
 export class TransactionsService {
-	constructor(private readonly prismaService: PrismaService) {}
+	constructor(
+		private readonly prismaService: PrismaService,
+		private readonly logger: PinoLogger
+	) {
+		this.logger.setContext(TransactionsService.name)
+	}
 
 	public async getUserTransactions(
 		data: GetUserTransactionsRequest
@@ -117,7 +123,7 @@ export class TransactionsService {
 						}
 						freezeBalance = freezeBalance.minus(amount)
 						break
-					case PrismaTransactionType.BONUS:
+					case PrismaTransactionType.BET_BONUS:
 						if (bonusBalance.lt(amount)) {
 							throw new RpcException({
 								code: RpcStatus.FAILED_PRECONDITION,
@@ -126,6 +132,9 @@ export class TransactionsService {
 						}
 						bonusBalance = bonusBalance.minus(amount)
 						freezeBalance = freezeBalance.plus(amount)
+						break
+					case PrismaTransactionType.ADD_BONUS:
+						bonusBalance = bonusBalance.plus(amount)
 						break
 					case PrismaTransactionType.REFUND:
 						if (freezeBalance.lt(amount)) {
@@ -165,6 +174,8 @@ export class TransactionsService {
 				}
 			})
 		} catch (e) {
+			console.log(e)
+			// this.logger.error(`Error in balance transaction: ${e}`)
 			throw new RpcException({
 				code: RpcStatus.INTERNAL,
 				details: 'Internal transaction error'
