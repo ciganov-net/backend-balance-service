@@ -78,6 +78,7 @@ export class TransactionsService {
 				let mainBalance = new Decimal(wallet.main_balance)
 				let freezeBalance = new Decimal(wallet.freeze_balance)
 				let bonusBalance = new Decimal(wallet.bonus_balance)
+				console.log(mainBalance)
 				switch (type) {
 					case PrismaTransactionType.WITHDRAW:
 						if (mainBalance.lt(amount)) {
@@ -102,12 +103,13 @@ export class TransactionsService {
 						freezeBalance = freezeBalance.plus(amount)
 						break
 					case PrismaTransactionType.BET_WIN:
-						if (freezeBalance.lt(amount)) {
-							throw new RpcException({
-								code: RpcStatus.FAILED_PRECONDITION,
-								details: 'Insufficient funds'
-							})
-						}
+						//для корректной работы краша, чтоб не создавать ещё transaction type
+						// if (freezeBalance.lt(amount)) {
+						// 	throw new RpcException({
+						// 		code: RpcStatus.FAILED_PRECONDITION,
+						// 		details: 'Insufficient funds'
+						// 	})
+						// }
 						const coefficient = new Decimal(multiplier || 1)
 						const betAmount = new Decimal(amount)
 						const totalWin = betAmount.times(coefficient)
